@@ -119,17 +119,17 @@
   <div class="container" id="dashboard" style="display:none">
     <img class="logo" src="https://www.szkb.ch/ResourcePackages/CorporateWebsite/assets/dist/img/szkb-logo.svg" alt="Schwyzer Kantonalbank Logo">
     <p id="welcome" style="text-align:center; font-size: 18px; margin-bottom: 10px;"></p>
-    <h2>Anlagekonto</h2>
+    <h2>Sicherheitskonto</h2>
 
     <div class="grid-boxes">
       <div class="info-box">
-        <p style="margin: 0; font-weight: bold; font-size: 18px;">Anlagebetrag</p>
+        <p style="margin: 0; font-weight: bold; font-size: 18px;">Kontostand</p>
         <p style="margin: 5px 0; color: green; font-weight: bold; font-size: 18px;">CHF 0,00</p>
         <p style="margin: 0; color: #333; font-size: 15px;">EUR 0,00 bei Kurs 0,9247</p>
       </div>
 
       <div class="info-box">
-        <p style="margin: 0; font-weight: bold; font-size: 18px;">Zinsertrag</p>
+        <p style="margin: 0; font-weight: bold; font-size: 18px;">Sparkonto</p>
         <p style="margin: 5px 0; color: green; font-weight: bold; font-size: 18px;">CHF 0,00</p>
         <p style="margin: 0; color: #333; font-size: 15px;">EUR 0,00 bei Kurs 0,9247</p>
       </div>
@@ -147,7 +147,7 @@
       <p class="label">BIC (SWIFT):</p>
       <p>KBSZCH22XXX</p>
     </div>
-    <br>
+
     <div class="info-box">
       <h3>Letzte Transaktionen</h3>
       <p>Noch keine Transaktionen vorhanden</p>
@@ -162,11 +162,12 @@
 
   <script>
     function checkLogin() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
 
-      if (username.toLowerCase() === 'John' && password === 'k3pe1tu2') {
-        document.getElementById('welcome').textContent = `Willkommen, Herr ${username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()}`;
+      if (username.toLowerCase() === 'john' && password === 'k3pe1tu2') {
+        document.getElementById('welcome').textContent =
+          `Willkommen, Herr ${username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()}`;
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('dashboard').style.display = 'block';
       } else {
@@ -177,6 +178,8 @@
     function logout() {
       document.getElementById('dashboard').style.display = 'none';
       document.getElementById('login-container').style.display = 'block';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
     }
   </script>
 </body>
