@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Banking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #004a99;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .login-container, .dashboard {
+            max-width: 400px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: .5rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: .5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: .7rem;
+            border: none;
+            background-color: #004a99;
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .balance-box {
+            background-color: #004a99;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .transaction {
+            display: flex;
+            justify-content: space-between;
+            padding: .5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .logout-btn {
+            background-color: #d11a2a;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Willkommen beim Online-Banking</h1>
+    </header>
+
+    <div class="login-container" id="login">
+        <h2>Login</h2>
+        <div class="input-group">
+            <label for="username">Benutzername</label>
+            <input type="text" id="username">
+        </div>
+        <div class="input-group">
+            <label for="password">Passwort</label>
+            <input type="password" id="password">
+        </div>
+        <button onclick="login()">Anmelden</button>
+    </div>
+
+    <div class="dashboard" id="dashboard" style="display:none">
+        <h2>Hallo, <span id="userDisplay"></span></h2>
+        <div class="balance-box">
+            <p>Kontostand</p>
+            <h3>1.175,01 €</h3>
+        </div>
+        <h3>Transaktionen</h3>
+        <div class="transaction"><span>YOUR TOWN CINEMA</span><span>7,50 €</span></div>
+        <div class="transaction"><span>GEORGES BBQ & PUB</span><span>37,25 €</span></div>
+        <div class="transaction"><span>YOUR TOWN UTILITIES</span><span>76,46 €</span></div>
+        <div class="transaction"><span>EL GRAN RESTAURANTE</span><span>13,98 €</span></div>
+        <div class="transaction"><span>ATM Einzahlung</span><span style="color:green">+37,25 €</span></div>
+        <div class="transaction"><span>LE PETITE CAFE</span><span>2,61 €</span></div>
+        <button class="logout-btn" onclick="logout()">Abmelden</button>
+    </div>
+
+    <script>
+        const USERNAME = "benutzer";
+        const PASSWORD = "passwort123";
+
+        function login() {
+            const user = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+
+            if (user === USERNAME && pass === PASSWORD) {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("dashboard").style.display = "block";
+                document.getElementById("userDisplay").innerText = user;
+            } else {
+                alert("Falscher Benutzername oder Passwort");
+            }
+        }
+
+        function logout() {
+            document.getElementById("dashboard").style.display = "none";
+            document.getElementById("login").style.display = "block";
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        }
+    </script>
+</body>
+</html>
